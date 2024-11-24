@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Resultado da Busca{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='busca.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="result-container">
+    {% if alunos %}
+        {% for aluno in alunos %}
+            <div class="student-card">
+                <div class="photo-container">
+                    {% if aluno.foto %}
+                    <img src="data:image/jpeg;base64,{{ aluno.foto | b64encode }}" alt="Foto do Aluno" class="student-photo">
+                    {% else %}
+                    <img src="{{ url_for('static', filename='default-photo.png') }}" alt="Foto do Aluno" class="student-photo">
+                    {% endif %}
+                </div>
+                <div class="info-container">
+                    <h2 class="student-name">{{ aluno.nome_completo }}</h2>
+                    <p><strong>RA:</strong> {{ aluno.ra }}</p>
+                    <p><strong>Turno:</strong> {{ aluno.turno }}</p>
+                    <p><strong>Email:</strong> {{ aluno.email }}</p>
+                    <p><strong>Matrícula:</strong> {{ aluno.matricula }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="no-result">
+            <h2>Nenhum aluno encontrado</h2>
+        </div>
+    {% endif %}
+    <a href="{{ url_for('main.home') }}" class="back-button">Voltar</a>
+</div>
+{% endblock %}

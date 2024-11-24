@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+{% endblock %}
+
+{% block content %}
+<header>
+    Bem-vindo, {{ username }}
+</header>
+<div class="full-screen-container">
+    <h1 class="title">Buscar Aluno</h1>
+    <form method="GET" action="{{ url_for('main.buscar_aluno') }}" class="search-form">
+        <input type="text" name="nome_aluno" class="input-field" placeholder="Digite o nome ou RA" required>
+        <button type="submit" class="submit-button">Buscar</button>
+    </form>
+    <div class="action-buttons">
+        <a href="{{ url_for('main.cadastrar_aluno') }}" class="action-button">Cadastrar Novo Aluno</a>
+        <a href="{{ url_for('main.logout') }}" class="action-button danger-button">Sair</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sistema de Liberação de Alunos{% endblock %}</title>
+    {% if not extra_styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    {% endif %}
+    {% block extra_styles %}{% endblock %}
+</head>
+<body>
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+    <footer class="footer">
+        Desenvolvido por Ronaldo de Souza Medeiros - TADS - 2024
+    </footer>
+</body>
+</html>
